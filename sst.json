@@ -1,5 +1,7 @@
 {
   "name": "apex",
-  "region": "us-east-1",
+  "region": "ap-southeast-1",
+  "lint": true,
+  "typeCheck": true,
   "main": "stacks/index.ts"
 }
