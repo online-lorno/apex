@@ -7,6 +7,7 @@ type Props = {
   transparent?: boolean;
   type?: 'info' | 'success';
   content?: ReactNode;
+  classNames?: string;
 };
 
 const Pill: React.FC<Props> = ({
@@ -15,10 +16,11 @@ const Pill: React.FC<Props> = ({
   transparent = false,
   type,
   content,
+  classNames = '',
 }) => {
   return (
     <div
-      className={clsx(
+      className={`${clsx(
         'py-1',
         'pl-2.5',
         'pr-2',
@@ -41,7 +43,7 @@ const Pill: React.FC<Props> = ({
           'bg-lime-200': type && type === 'success',
           'text-lime-600': type && type === 'success',
         }
-      )}
+      )} ${classNames}`}
     >
       <div className="flex justify-around content-center">
         {icon}

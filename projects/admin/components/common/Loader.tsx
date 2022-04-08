@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
+type Props = {
+  classNames?: string;
+};
+
 let timer: NodeJS.Timer;
 const variants = {
   left: {
@@ -13,7 +17,7 @@ const variants = {
   },
 };
 
-const Loader: React.FC = () => {
+const Loader: React.FC<Props> = ({ classNames = '' }) => {
   const [isLeft, setIsLeft] = useState(true);
 
   useEffect(() => {
@@ -28,7 +32,7 @@ const Loader: React.FC = () => {
 
   return (
     <motion.div
-      className="h-4 w-full rounded bg-white"
+      className={`h-4 w-full rounded bg-white ${classNames}`}
       animate={isLeft ? 'left' : 'right'}
       variants={variants}
       transition={{

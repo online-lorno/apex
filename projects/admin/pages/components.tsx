@@ -39,7 +39,7 @@ const Components: NextPage = () => {
         <div className="mb-4">
           <h1 className="uppercase">Loaders</h1>
           <div className="flex items-center">
-            <div className="w-24">
+            <div className="w-24 mr-1">
               <Loader />
             </div>
             <Pill
