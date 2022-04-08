@@ -6,9 +6,16 @@ type Props = {
   icon?: ReactNode;
   transparent?: boolean;
   type?: 'info' | 'success';
+  content?: ReactNode;
 };
 
-const Pill: React.FC<Props> = ({ text, icon, transparent = false, type }) => {
+const Pill: React.FC<Props> = ({
+  text,
+  icon,
+  transparent = false,
+  type,
+  content,
+}) => {
   return (
     <div
       className={clsx(
@@ -17,8 +24,7 @@ const Pill: React.FC<Props> = ({ text, icon, transparent = false, type }) => {
         'pr-2',
         'text-xs',
         'inline-flex',
-        'justify-around',
-        'content-center',
+        'flex-col',
         'rounded-lg',
         'text-gray-600',
         {
@@ -37,8 +43,13 @@ const Pill: React.FC<Props> = ({ text, icon, transparent = false, type }) => {
         }
       )}
     >
-      {icon}
-      {text}
+      <div className="flex justify-around content-center">
+        {icon}
+        {text}
+      </div>
+      {content && (
+        <div className="flex justify-around content-center py-2">{content}</div>
+      )}
     </div>
   );
 };

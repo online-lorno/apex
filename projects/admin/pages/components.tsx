@@ -2,6 +2,7 @@ import type { NextPage } from 'next';
 import Head from 'next/head';
 import { TagIcon } from '@heroicons/react/outline';
 
+import Loader from '@components/common/Loader';
 import Pill from '@components/common/Pill';
 
 const Components: NextPage = () => {
@@ -28,6 +29,20 @@ const Components: NextPage = () => {
             />
             <Pill text="Available" type="info" />
             <Pill text="Sold" type="success" />
+          </div>
+        </div>
+
+        <div className="mb-4">
+          <h1 className="uppercase">Loaders</h1>
+          <div className="flex items-center">
+            <div className="w-24">
+              <Loader />
+            </div>
+            <Pill
+              text="Start Price"
+              icon={<TagIcon className="w-4 h-4 mr-0.5" />}
+              content={<Loader />}
+            />
           </div>
         </div>
       </div>
