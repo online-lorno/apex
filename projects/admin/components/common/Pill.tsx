@@ -1,14 +1,14 @@
-import React, { ReactNode } from 'react';
-import clsx from 'clsx';
+import React, { ReactNode } from 'react'
+import clsx from 'clsx'
 
 type Props = {
-  text: string;
-  icon?: ReactNode;
-  transparent?: boolean;
-  type?: 'info' | 'success';
-  content?: ReactNode;
-  classNames?: string;
-};
+  text: string
+  icon?: ReactNode
+  transparent?: boolean
+  type?: 'info' | 'success'
+  content?: ReactNode
+  classNames?: string
+}
 
 const Pill: React.FC<Props> = ({
   text,
@@ -20,7 +20,7 @@ const Pill: React.FC<Props> = ({
 }) => {
   return (
     <div
-      className={`${clsx(
+      className={clsx(
         'py-1',
         'pl-2.5',
         'pr-2',
@@ -42,8 +42,9 @@ const Pill: React.FC<Props> = ({
         {
           'bg-lime-200': type && type === 'success',
           'text-lime-600': type && type === 'success',
-        }
-      )} ${classNames}`}
+        },
+        classNames
+      )}
     >
       <div className="flex justify-around content-center">
         {icon}
@@ -53,7 +54,7 @@ const Pill: React.FC<Props> = ({
         <div className="flex justify-around content-center py-2">{content}</div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Pill;
+export default Pill

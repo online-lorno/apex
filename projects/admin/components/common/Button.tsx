@@ -1,13 +1,13 @@
-import React, { ReactNode } from 'react';
-import clsx from 'clsx';
+import React, { ReactNode } from 'react'
+import clsx from 'clsx'
 
 type Props = {
-  text: string;
-  type?: 'default' | 'success';
-  icon?: ReactNode;
-  iconPosition?: 'left' | 'right';
-  classNames?: string;
-};
+  text: string
+  type?: 'default' | 'success'
+  icon?: ReactNode
+  iconPosition?: 'left' | 'right'
+  classNames?: string
+}
 
 const Button: React.FC<Props> = ({
   text,
@@ -18,7 +18,7 @@ const Button: React.FC<Props> = ({
 }) => {
   return (
     <button
-      className={`${clsx(
+      className={clsx(
         'py-2',
         'px-4',
         'text-black',
@@ -39,14 +39,15 @@ const Button: React.FC<Props> = ({
           'bg-lime-400': type && type === 'success',
           'border-lime-500': type && type === 'success',
           'hover:bg-lime-500': type && type === 'success',
-        }
-      )} ${classNames}`}
+        },
+        classNames
+      )}
     >
       {icon && iconPosition === 'left' && <>{icon}</>}
       {text}
       {icon && iconPosition === 'right' && <>{icon}</>}
     </button>
-  );
-};
+  )
+}
 
-export default Button;
+export default Button

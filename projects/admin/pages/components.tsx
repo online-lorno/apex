@@ -1,11 +1,12 @@
-import type { NextPage } from 'next';
-import Head from 'next/head';
-import { TagIcon } from '@heroicons/react/outline';
-import { SaveIcon } from '@heroicons/react/outline';
+import type { NextPage } from 'next'
+import Head from 'next/head'
+import { TagIcon } from '@heroicons/react/outline'
+import { SaveIcon } from '@heroicons/react/outline'
 
-import Button from '@components/common/Button';
-import Loader from '@components/common/Loader';
-import Pill from '@components/common/Pill';
+import Button from '@components/common/Button'
+import Loader from '@components/common/Loader'
+import Pill from '@components/common/Pill'
+import Sidebar from '@components/common/Sidebar'
 
 const Components: NextPage = () => {
   return (
@@ -62,9 +63,17 @@ const Components: NextPage = () => {
             <Button text="Success" type="success" />
           </div>
         </div>
+
+        {/* Sidebar */}
+        <div className="mb-4">
+          <h1 className="uppercase">Sidebar</h1>
+          <div className="h-96">
+            <Sidebar />
+          </div>
+        </div>
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Components;
+export default Components
