@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react'
 import clsx from 'clsx'
 
-type Props = {
+interface Props {
   text: string
   icon?: ReactNode
   transparent?: boolean
