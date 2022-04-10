@@ -1,9 +1,8 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { TagIcon } from '@heroicons/react/outline'
-import { SaveIcon } from '@heroicons/react/outline'
 
 import Button from '@components/common/Button'
+import HeroIcon from '@components/common/HeroIcon'
 import Loader from '@components/common/Loader'
 import Pill from '@components/common/Pill'
 import Sidebar from '@components/common/Sidebar'
@@ -24,13 +23,10 @@ const Components: NextPage = () => {
           <div className="flex items-center">
             <Pill
               text="Available"
-              icon={<TagIcon className="w-4 h-4 mr-0.5" />}
+              icon={<HeroIcon icon="TagIcon" />}
               transparent
             />
-            <Pill
-              text="Available"
-              icon={<TagIcon className="w-4 h-4 mr-0.5" />}
-            />
+            <Pill text="Available" icon={<HeroIcon icon="TagIcon" />} />
             <Pill text="Available" type="info" />
             <Pill text="Sold" type="success" />
           </div>
@@ -45,7 +41,7 @@ const Components: NextPage = () => {
             </div>
             <Pill
               text="Start Price"
-              icon={<TagIcon className="w-4 h-4 mr-0.5" />}
+              icon={<HeroIcon icon="TagIcon" />}
               content={<Loader />}
             />
           </div>
@@ -58,7 +54,7 @@ const Components: NextPage = () => {
             <Button
               classNames="mr-1"
               text="Default"
-              icon={<SaveIcon className="w-6 h-6 mr-1" />}
+              icon={<HeroIcon icon="SaveIcon" />}
             />
             <Button text="Success" type="success" />
           </div>
