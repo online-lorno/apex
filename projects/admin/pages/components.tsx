@@ -3,6 +3,7 @@ import Head from 'next/head'
 
 import Button from '@components/common/Button'
 import HeroIcon from '@components/common/HeroIcon'
+import MaterialIcon from '@components/common/MaterialIcon'
 import Loader from '@components/common/Loader'
 import Pill from '@components/common/Pill'
 import Sidebar from '@components/common/Sidebar'
@@ -29,6 +30,15 @@ const Components: NextPage = () => {
             <Pill text="Available" icon={<HeroIcon icon="TagIcon" />} />
             <Pill text="Available" type="info" />
             <Pill text="Sold" type="success" />
+            <Pill
+              text="Available"
+              icon={<MaterialIcon icon="DashboardOutlined" />}
+              transparent
+            />
+            <Pill
+              text="Available"
+              icon={<MaterialIcon icon="DashboardOutlined" />}
+            />
           </div>
         </div>
 
@@ -64,7 +74,23 @@ const Components: NextPage = () => {
         <div className="mb-4">
           <h1 className="uppercase">Sidebar</h1>
           <div className="h-96">
-            <Sidebar />
+            <Sidebar
+              menuItems={[
+                {
+                  title: 'Dashboard',
+                  icon: 'DeviceTabletIcon',
+                },
+                {
+                  title: 'Sales Leads',
+                  icon: 'CashIcon',
+                },
+                {
+                  title: 'Comissions',
+                  icon: 'CurrencyDollarIcon',
+                  badgeText: '4',
+                },
+              ]}
+            />
           </div>
         </div>
       </div>
