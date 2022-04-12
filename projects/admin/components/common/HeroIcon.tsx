@@ -4,10 +4,10 @@ import clsx from 'clsx'
 import * as SolidIcons from '@heroicons/react/solid'
 import * as OutlineIcons from '@heroicons/react/outline'
 
-export type IconName = keyof typeof SolidIcons | keyof typeof OutlineIcons
+export type HeroIconName = keyof typeof SolidIcons | keyof typeof OutlineIcons
 
 interface Props {
-  icon: IconName
+  icon: HeroIconName
   classNames?: string
   solid?: boolean
 }
