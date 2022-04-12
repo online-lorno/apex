@@ -22,8 +22,7 @@ const Pill: React.FC<Props> = ({
     <div
       className={clsx(
         'py-1',
-        'pl-2.5',
-        'pr-2',
+        'px-2',
         'text-xs',
         'inline-flex',
         'flex-col',
