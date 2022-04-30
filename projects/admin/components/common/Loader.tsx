@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion'
 import clsx from 'clsx'
 
@@ -6,44 +6,27 @@ interface Props {
   classNames?: string
 }
 
-// let timer: NodeJS.Timer;
 const variants = {
-  left: {
-    background:
+  animation: {
+    background: [
       'linear-gradient(270deg, rgba(203, 201, 201, 0.098) 40.6%, rgba(122, 122, 122, 0.138) 100%)',
-  },
-  right: {
-    background:
       'linear-gradient(270deg, rgba(122, 122, 122, 0.138) -3.68%, rgba(203, 201, 201, 0.098) 100%)',
+    ],
+    transition: {
+      background: {
+        yoyo: Infinity,
+        duration: 1,
+      },
+    },
   },
 }
 
 const Loader: React.FC<Props> = ({ classNames = '' }) => {
-  const [isLeft, setIsLeft] = useState(true)
-
-  useEffect(() => {
-    // timer = setInterval(() => {
-    //   setIsLeft((isLeft) => !isLeft);
-    // }, 1000);
-
-    // return () => {
-    //   clearInterval(timer);
-    // };
-
-    setInterval(() => {
-      setIsLeft((isLeft) => !isLeft)
-    }, 1000)
-  }, [])
-
   return (
     <motion.div
-      className={clsx('h-4', 'w-full', 'rounded', 'bg-white', classNames)}
-      animate={isLeft ? 'left' : 'right'}
+      className={clsx('h-4', 'w-full', 'rounded', classNames)}
       variants={variants}
-      transition={{
-        duration: 1,
-        ease: 'easeInOut',
-      }}
+      animate="animation"
     />
   )
 }
