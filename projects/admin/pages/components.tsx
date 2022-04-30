@@ -78,16 +78,44 @@ const Components: NextPage = () => {
               menuItems={[
                 {
                   title: 'Dashboard',
-                  icon: 'DeviceTabletIcon',
+                  icon: 'DashboardOutlined',
                 },
                 {
                   title: 'Sales Leads',
-                  icon: 'CashIcon',
+                  icon: 'CleanHandsOutlined',
                 },
                 {
                   title: 'Comissions',
-                  icon: 'CurrencyDollarIcon',
+                  icon: 'MonetizationOnOutlined',
                   badgeText: '4',
+                  menuItems: [
+                    {
+                      title: 'Comissions 1',
+                    },
+                    {
+                      title: 'Comissions 2',
+                    },
+                    {
+                      title: 'Comissions 3',
+                    },
+                  ],
+                },
+                {
+                  title: 'Properties',
+                  icon: 'HomeWorkOutlined',
+                  badgeText: '10',
+                  menuItems: [
+                    {
+                      title: 'Private',
+                    },
+                    {
+                      title: 'Projects',
+                    },
+                  ],
+                },
+                {
+                  title: 'Developers',
+                  icon: 'HouseSidingOutlined',
                 },
               ]}
             />
