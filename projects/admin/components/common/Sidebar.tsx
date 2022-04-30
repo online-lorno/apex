@@ -21,6 +21,21 @@ interface SidebarProps {
   classNames?: string
 }
 
+const menuItemContainerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+}
+
+const menuItemVariants = {
+  hidden: { opacity: 0 },
+  show: { opacity: 1 },
+}
+
 const MenuItem: React.FC<MenuItemProps> = ({
   title,
   icon,
@@ -69,20 +84,20 @@ const MenuItem: React.FC<MenuItemProps> = ({
       <AnimatePresence>
         {!!menuItems.length && isOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.1 }}
-            exit={{ opacity: 0 }}
+            variants={menuItemContainerVariants}
+            initial="hidden"
+            animate="show"
           >
             {menuItems.map((item, index) => (
-              <a
+              <motion.a
                 className="flex items-center cursor-pointer py-2 px-8 rounded hover:bg-gray-100 group"
                 key={kebabCase(`${item.title}-${index}`)}
+                variants={menuItemVariants}
               >
                 <span className="text-sm text-gray-500 group-hover:text-blue-600">
                   {item.title}
                 </span>
-              </a>
+              </motion.a>
             ))}
           </motion.div>
         )}
