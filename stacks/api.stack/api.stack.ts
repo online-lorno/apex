@@ -46,6 +46,8 @@ export default class ApiStack extends sst.Stack {
     // Show the endpoint in the output
     this.addOutputs({
       ApiEndpoint: api.url,
+      SecretArn: cluster.secretArn,
+      ClusterIdentifier: cluster.clusterIdentifier,
     })
   }
 }
