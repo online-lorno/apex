@@ -17,7 +17,7 @@ const Components: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="container mx-auto pt-4">
+      <>
         {/* Pill Labels */}
         <div className="mb-4">
           <h1 className="uppercase">Pill Labels</h1>
@@ -121,7 +121,7 @@ const Components: NextPage = () => {
             />
           </div>
         </div>
-      </div>
+      </>
     </>
   )
 }

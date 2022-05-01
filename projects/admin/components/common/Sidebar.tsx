@@ -75,7 +75,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
           )}
           {!!menuItems.length && (
             <MaterialIcon
-              icon={isOpen ? 'ExpandLess' : 'ExpandMore'}
+              icon={isOpen ? 'ExpandLessOutlined' : 'ExpandMoreOutlined'}
               classNames="w-5 h-5 ml-1 text-gray-500 group-hover:text-blue-700"
             />
           )}

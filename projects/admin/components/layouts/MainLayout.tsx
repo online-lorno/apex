@@ -1,7 +1,68 @@
-import React from 'react';
+import React, { ReactNode } from 'react'
 
-function MainLayout() {
-  return <div>MainLayout</div>;
+import Navbar from '@components/sections/Navbar'
+import Sidebar from '@components/common/Sidebar'
+
+interface Props {
+  children?: ReactNode
 }
 
-export default MainLayout;
+const MainLayout: React.FC<Props> = ({ children }) => {
+  return (
+    <>
+      <Navbar />
+      <div className="flex flex-row">
+        <div className="h-screen">
+          <Sidebar
+            menuItems={[
+              {
+                title: 'Dashboard',
+                icon: 'DashboardOutlined',
+              },
+              {
+                title: 'Sales Leads',
+                icon: 'CleanHandsOutlined',
+              },
+              {
+                title: 'Comissions',
+                icon: 'MonetizationOnOutlined',
+                badgeText: '4',
+                menuItems: [
+                  {
+                    title: 'Comissions 1',
+                  },
+                  {
+                    title: 'Comissions 2',
+                  },
+                  {
+                    title: 'Comissions 3',
+                  },
+                ],
+              },
+              {
+                title: 'Properties',
+                icon: 'HomeWorkOutlined',
+                badgeText: '10',
+                menuItems: [
+                  {
+                    title: 'Private',
+                  },
+                  {
+                    title: 'Projects',
+                  },
+                ],
+              },
+              {
+                title: 'Developers',
+                icon: 'HouseSidingOutlined',
+              },
+            ]}
+          />
+        </div>
+        <div className="container p-4">{children}</div>
+      </div>
+    </>
+  )
+}
+
+export default MainLayout
