@@ -1,20 +1,25 @@
 import React, { Fragment } from 'react'
+import Link from 'next/link'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import clsx from 'clsx'
 
 import MaterialIcon from '@components/common/MaterialIcon'
 
 const navigation = [
-  { name: 'Brokerage', href: '#', current: true },
-  { name: 'Report', href: '#', current: false },
-  { name: 'Settings', href: '#', current: false },
-  { name: 'Billing', href: '#', current: false },
+  { name: 'Brokerage', href: '/' },
+  { name: 'Report', href: '/report' },
+  { name: 'Settings', href: '/settings' },
+  { name: 'Billing', href: '/billing' },
+  { name: 'Components', href: '/components' },
 ]
 
 const Navbar = () => {
+  const router = useRouter()
+
   return (
-    <Disclosure as="nav" className="bg-blue-900">
+    <Disclosure as="nav" className="bg-blue-900 fixed top-0 left-0 w-full z-10">
       {({ open }) => (
         <>
           <div className="max-w-full mx-auto px-2 sm:px-6 lg:px-8">
@@ -40,30 +45,37 @@ const Navbar = () => {
               </div>
               <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex-shrink-0 flex items-center">
-                  <span className="text-xl text-lime-300 font-bold uppercase tracking-widest">
-                    Apex
-                  </span>
+                  <Link href="/">
+                    <a className="text-xl text-lime-300 font-bold uppercase tracking-widest">
+                      Apex
+                    </a>
+                  </Link>
                 </div>
                 <div className="hidden sm:block sm:ml-6">
-                  <div className="flex space-x-4">
-                    {navigation.map((item) => (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={clsx(
-                          {
-                            'bg-lime-400 text-black': item.current,
-                          },
-                          {
-                            'text-white hover:text-lime-400': !item.current,
-                          },
-                          'px-3 py-2 rounded-md text-sm font-medium'
-                        )}
-                        aria-current={item.current ? 'page' : undefined}
-                      >
-                        {item.name}
-                      </a>
-                    ))}
+                  <div className="flex sm:space-x-2 lg:space-x-4">
+                    {navigation.map((item) => {
+                      const current =
+                        (item.href === '/' && router.asPath === '/') ||
+                        item.href === router.asPath
+                      return (
+                        <Link href={item.href} key={item.name}>
+                          <a
+                            className={clsx(
+                              {
+                                'bg-lime-400 text-black': current,
+                              },
+                              {
+                                'text-white hover:text-lime-400': !current,
+                              },
+                              'px-3 py-2 rounded-md text-sm font-medium'
+                            )}
+                            aria-current={current ? 'page' : undefined}
+                          >
+                            {item.name}
+                          </a>
+                        </Link>
+                      )
+                    })}
                   </div>
                 </div>
               </div>
@@ -81,7 +93,7 @@ const Navbar = () => {
                 </button>
 
                 {/* Profile dropdown */}
-                <Menu as="div" className="ml-6 relative">
+                <Menu as="div" className="ml-2 lg:ml-6 relative">
                   <div>
                     <Menu.Button className="flex items-center text-sm">
                       <span className="sr-only">Open user menu</span>
@@ -92,12 +104,12 @@ const Navbar = () => {
                         width={24}
                         alt=""
                       />
-                      <span className="text-white font-medium ml-2">
+                      <span className="text-white font-medium ml-2 hidden lg:block">
                         John Doesser
                       </span>
                       <MaterialIcon
                         icon="ExpandMoreOutlined"
-                        classNames="h-4 w-4 ml-2 text-white"
+                        classNames="h-4 w-4 ml-2 text-white hidden lg:block"
                         aria-hidden="true"
                       />
                     </Menu.Button>
@@ -166,25 +178,30 @@ const Navbar = () => {
 
           <Disclosure.Panel className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
-              {navigation.map((item) => (
-                <Disclosure.Button
-                  key={item.name}
-                  as="a"
-                  href={item.href}
-                  className={clsx(
-                    {
-                      'bg-lime-400 text-black': item.current,
-                    },
-                    {
-                      'text-white hover:text-lime-400': !item.current,
-                    },
-                    'block px-3 py-2 rounded-md text-base font-medium'
-                  )}
-                  aria-current={item.current ? 'page' : undefined}
-                >
-                  {item.name}
-                </Disclosure.Button>
-              ))}
+              {navigation.map((item) => {
+                const current =
+                  (item.href === '/' && router.asPath === '/') ||
+                  item.href === router.asPath
+                return (
+                  <Disclosure.Button
+                    key={item.name}
+                    as="a"
+                    href={item.href}
+                    className={clsx(
+                      {
+                        'bg-lime-400 text-black': current,
+                      },
+                      {
+                        'text-white hover:text-lime-400': !current,
+                      },
+                      'block px-3 py-2 rounded-md text-base font-medium'
+                    )}
+                    aria-current={current ? 'page' : undefined}
+                  >
+                    {item.name}
+                  </Disclosure.Button>
+                )
+              })}
             </div>
           </Disclosure.Panel>
         </>

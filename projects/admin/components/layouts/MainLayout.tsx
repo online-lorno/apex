@@ -9,10 +9,10 @@ interface Props {
 
 const MainLayout: React.FC<Props> = ({ children }) => {
   return (
-    <>
+    <div className="relative">
       <Navbar />
       <div className="flex flex-row">
-        <div className="h-screen">
+        <div className="h-screen pt-10">
           <Sidebar
             menuItems={[
               {
@@ -61,7 +61,7 @@ const MainLayout: React.FC<Props> = ({ children }) => {
         </div>
         <div className="container p-4">{children}</div>
       </div>
-    </>
+    </div>
   )
 }
 
