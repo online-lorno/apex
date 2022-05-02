@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import clsx from 'clsx'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -7,7 +8,7 @@ import MaterialIcon, { MaterialIconName } from '@components/common/MaterialIcon'
 import Pill from '@components/common/Pill'
 import kebabCase from '@utils/string/kebab-case'
 
-interface MenuItemProps {
+export interface MenuItemProps {
   title: string
   icon?: MaterialIconName
   badgeText?: string
@@ -43,72 +44,175 @@ const MenuItem: React.FC<MenuItemProps> = ({
   link,
   menuItems = [],
 }) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const router = useRouter()
+  const active =
+    (link && router.asPath === link) ||
+    menuItems.some((item) => router.asPath === item.link)
+  const [isOpen, setIsOpen] = useState(active)
 
-  const menuItemContent = (
-    <>
-      <a
-        className="flex justify-between items-center cursor-pointer py-2 group"
-        onClick={() => {
-          if (menuItems.length) {
-            setIsOpen(!isOpen)
-          }
-        }}
-      >
-        <div className="flex justify-start">
-          {icon && (
-            <MaterialIcon
-              icon={icon}
-              classNames="w-5 h-5 mr-1.5 text-gray-500 group-hover:text-blue-700"
-            />
+  const menuItemAnchor = (
+    <a
+      className="flex justify-between items-center cursor-pointer py-2 group"
+      onClick={() => {
+        if (menuItems.length) {
+          setIsOpen(!isOpen)
+        }
+      }}
+    >
+      <div className="flex justify-start">
+        {icon && (
+          <MaterialIcon
+            icon={icon}
+            classNames={clsx(
+              {
+                'text-blue-700': active,
+              },
+              {
+                'text-gray-500': !active,
+              },
+              'w-5 h-5 mr-1.5 group-hover:text-blue-700'
+            )}
+          />
+        )}
+        <span
+          className={clsx(
+            {
+              'text-blue-700': active,
+            },
+            {
+              'text-gray-500': !active,
+            },
+            'group-hover:text-blue-700'
           )}
-          <span className="text-gray-500 group-hover:text-blue-700">
-            {title}
-          </span>
-        </div>
-        <div className="flex justify-end items-center">
-          {badgeText && (
-            <Pill
-              text={badgeText}
-              classNames="bg-gray-300 text-gray-50 w-8 h-6 px-0 py-0 flex justify-center items-center group-hover:bg-gray-900 group-hover:text-lime-400"
-            />
-          )}
-          {!!menuItems.length && (
-            <MaterialIcon
-              icon={isOpen ? 'ExpandLessOutlined' : 'ExpandMoreOutlined'}
-              classNames="w-5 h-5 ml-1 text-gray-500 group-hover:text-blue-700"
-            />
-          )}
-        </div>
-      </a>
-      <AnimatePresence>
-        {!!menuItems.length && isOpen && (
-          <motion.div
-            variants={menuItemContainerVariants}
-            initial="hidden"
-            animate="show"
-          >
-            {menuItems.map((item, index) => (
+        >
+          {title}
+        </span>
+      </div>
+      <div className="flex justify-end items-center">
+        {badgeText && (
+          <Pill
+            text={badgeText}
+            classNames={clsx(
+              {
+                'bg-gray-900 text-lime-400': active,
+              },
+              {
+                'bg-gray-300 text-gray-50': !active,
+              },
+              'w-8 h-6 px-0 py-0 flex justify-center items-center group-hover:bg-gray-900 group-hover:text-lime-400'
+            )}
+          />
+        )}
+        {!!menuItems.length && (
+          <MaterialIcon
+            icon={isOpen ? 'ExpandLessOutlined' : 'ExpandMoreOutlined'}
+            classNames={clsx(
+              {
+                'text-blue-700': active,
+              },
+              {
+                'text-gray-500': !active,
+              },
+              'w-5 h-5 ml-1 group-hover:text-blue-700'
+            )}
+          />
+        )}
+      </div>
+    </a>
+  )
+  const menuteItemChildItems = (
+    <AnimatePresence>
+      {!!menuItems.length && isOpen && (
+        <motion.div
+          variants={menuItemContainerVariants}
+          initial="hidden"
+          animate="show"
+        >
+          {menuItems.map((item, index) => {
+            const menuItemActive = item?.link && router.asPath === item.link
+
+            if (item?.link) {
+              return (
+                <Link
+                  href={item?.link}
+                  passHref
+                  key={kebabCase(`${item.title}-${index}`)}
+                >
+                  <motion.a
+                    className={clsx(
+                      {
+                        'bg-gray-100': menuItemActive,
+                      },
+                      'flex items-center cursor-pointer py-2 px-8 rounded hover:bg-gray-100 group'
+                    )}
+                    variants={menuItemVariants}
+                  >
+                    <span
+                      className={clsx(
+                        {
+                          'text-blue-600': menuItemActive,
+                        },
+                        {
+                          'text-gray-500': !menuItemActive,
+                        },
+                        'text-sm group-hover:text-blue-600'
+                      )}
+                    >
+                      {item.title}
+                    </span>
+                  </motion.a>
+                </Link>
+              )
+            }
+
+            return (
               <motion.a
-                className="flex items-center cursor-pointer py-2 px-8 rounded hover:bg-gray-100 group"
+                className={clsx(
+                  {
+                    'bg-gray-100': menuItemActive,
+                  },
+                  'flex items-center cursor-pointer py-2 px-8 rounded hover:bg-gray-100 group'
+                )}
                 key={kebabCase(`${item.title}-${index}`)}
                 variants={menuItemVariants}
               >
-                <span className="text-sm text-gray-500 group-hover:text-blue-600">
+                <span
+                  className={clsx(
+                    {
+                      'text-blue-600': menuItemActive,
+                    },
+                    {
+                      'text-gray-500': !menuItemActive,
+                    },
+                    'text-sm group-hover:text-blue-600'
+                  )}
+                >
                   {item.title}
                 </span>
               </motion.a>
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </>
+            )
+          })}
+        </motion.div>
+      )}
+    </AnimatePresence>
   )
 
   return (
     <>
-      {link && <Link href={link}>{menuItemContent}</Link>}
-      {!link && menuItemContent}
+      {link && (
+        <>
+          <Link href={link} passHref>
+            {menuItemAnchor}
+          </Link>
+          {menuteItemChildItems}
+        </>
+      )}
+      {!link && (
+        <>
+          {menuItemAnchor}
+          {menuteItemChildItems}
+        </>
+      )}
     </>
   )
 }
@@ -117,16 +221,7 @@ const Sidebar: React.FC<SidebarProps> = ({ menuItems, classNames = '' }) => {
   return (
     <div
       className={clsx(
-        'w-64',
-        'h-full',
-        'overflow-y-auto',
-        'bg-white',
-        'border',
-        'border-gray-50',
-        'drop-shadow',
-        'pt-8',
-        'px-6',
-        'overflow-auto',
+        'w-64 h-full overflow-y-auto bg-white border border-gray-50 drop-shadow pt-4 px-6 overflow-auto',
         classNames
       )}
     >

@@ -12,7 +12,6 @@ const navigation = [
   { name: 'Report', href: '/report' },
   { name: 'Settings', href: '/settings' },
   { name: 'Billing', href: '/billing' },
-  { name: 'Components', href: '/components' },
 ]
 
 const Navbar = () => {
@@ -55,8 +54,11 @@ const Navbar = () => {
                   <div className="flex sm:space-x-2 lg:space-x-4">
                     {navigation.map((item) => {
                       const current =
-                        (item.href === '/' && router.asPath === '/') ||
-                        item.href === router.asPath
+                        item.href === router.asPath ||
+                        (item.href !== '/' &&
+                          router.asPath.includes(item.href)) ||
+                        (item.href === '/' &&
+                          router.asPath.includes('/brokerage'))
                       return (
                         <Link href={item.href} key={item.name}>
                           <a
