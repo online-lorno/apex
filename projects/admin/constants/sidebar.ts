@@ -49,6 +49,22 @@ const sidebar: Props = {
       title: 'Developers',
       icon: 'HouseSidingOutlined',
     },
+    {
+      title: 'Accounting',
+      icon: 'SsidChartOutlined',
+    },
+    {
+      title: 'Address Book',
+      icon: 'BookOutlined',
+    },
+    {
+      title: 'Administration',
+      icon: 'AutoAwesomeOutlined',
+    },
+    {
+      title: 'Lead Tools',
+      icon: 'QrCodeOutlined',
+    },
   ],
   report: [],
   settings: [],
