@@ -20,7 +20,7 @@ const MainLayout: React.FC<Props> = ({ children }) => {
         <div className="h-screen pt-16">
           <Sidebar menuItems={sidebarConstant[key] ?? []} />
         </div>
-        <div className="container p-4 pt-20">{children}</div>
+        <div className="container pt-16">{children}</div>
       </div>
     </div>
   )
