@@ -60,13 +60,13 @@ const Components: NextPage = () => {
         {/* Buttons */}
         <div className="mb-4">
           <h1 className="uppercase">Buttons</h1>
-          <div className="flex items-center">
+          <div className="flex items-center space-x-1">
+            <Button text="Default" icon={<HeroIcon icon="SaveIcon" />} />
+            <Button text="Success" type="success" />
             <Button
-              classNames="mr-1"
-              text="Default"
+              classNames="py-2 px-2"
               icon={<HeroIcon icon="SaveIcon" />}
             />
-            <Button text="Success" type="success" />
           </div>
         </div>
 
