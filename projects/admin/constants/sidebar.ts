@@ -42,6 +42,7 @@ const sidebar: Props = {
         },
         {
           title: 'Projects',
+          link: '/brokerage/projects',
         },
       ],
     },
