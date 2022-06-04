@@ -8,7 +8,8 @@
     "build": "sst build --stage dev",
     "deploy": "sst deploy --stage dev",
     "remove": "sst remove --stage dev",
-    "console": "sst console --stage dev"
+    "console": "sst console --stage dev",
+    "migrate:file": "touch src/backend/migrations/$(date +%Y%m%d%H%M%S)-migration-file.mjs"
   },
   "eslintConfig": {
     "extends": [
@@ -16,13 +17,13 @@
     ]
   },
   "devDependencies": {
-    "@serverless-stack/cli": "1.0.2",
-    "@serverless-stack/resources": "1.0.2",
+    "@serverless-stack/cli": "1.2.15",
+    "@serverless-stack/resources": "1.2.15",
     "@tsconfig/node14": "^1.0.1",
     "@types/aws-lambda": "^8.10.70",
     "@types/jest": "^27.4.1",
     "@types/node": "<15.0.0",
-    "aws-cdk-lib": "2.20.0",
+    "aws-cdk-lib": "2.24.0",
     "typescript": "4.4.4"
   },
   "dependencies": {

@@ -1,5 +1,10 @@
 {
   "name": "apex-backend",
   "version": "0.0.0",
-  "type": "module"
+  "type": "module",
+  "dependencies": {
+    "aws-sdk": "^2.1148.0",
+    "kysely": "^0.19.3",
+    "kysely-data-api": "^0.0.9"
+  }
 }
