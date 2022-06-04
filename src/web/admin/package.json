@@ -1,6 +1,6 @@
 {
-  "name": "admin",
-  "version": "0.1.0",
+  "name": "apex-admin",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "dev": "sst-env -- next dev -p 4001",

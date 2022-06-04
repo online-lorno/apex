@@ -1,1 +1,1 @@
-export { default } from './api.stack';
+export { Api } from './api.stack'

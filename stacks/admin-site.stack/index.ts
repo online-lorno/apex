@@ -1,1 +1,1 @@
-export { default } from './admin-site.stack';
+export { AdminSite } from './admin-site.stack'

@@ -1,1 +1,1 @@
-export { default } from './client-site.stack';
+export { ClientSite } from './client-site.stack'
