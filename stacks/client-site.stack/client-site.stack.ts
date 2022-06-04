@@ -5,7 +5,7 @@ import { Api } from '../api.stack'
 export function ClientSite({ stack }: StackContext) {
   const api = use(Api)
   const site = new NextjsSite(stack, 'site', {
-    path: 'projects/admin',
+    path: 'src/web/client',
     environment: {
       NODE_API_URL: api.url,
     },
