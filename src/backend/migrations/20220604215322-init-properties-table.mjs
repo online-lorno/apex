@@ -1,6 +1,6 @@
 import { Kysely } from 'kysely'
 
-const table = 'table_name'
+const table = 'properties'
 
 /**
  * @param db {Kysely<any>}
@@ -9,15 +9,16 @@ export async function up(db) {
   await db.schema
     .createTable(table)
     .addColumn('id', 'serial', (col) => col.primaryKey())
-    .addColumn('name', 'varchar', (col) => col.notNull())
+    .addColumn('property_id', 'varchar')
+    .addColumn('status', 'varchar', (col) => col.notNull())
     .addColumn('created_at', 'timestamp', (col) => col.defaultTo('now()'))
     .addColumn('updated_at', 'timestamp')
     .execute()
 
   await db.schema
-    .createIndex(`${table}_name_index`)
+    .createIndex(`${table}_property_id_index`)
     .on(table)
-    .column('name')
+    .column('property_id')
     .execute()
 }
 
